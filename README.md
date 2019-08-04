@@ -9,5 +9,5 @@ Message model is the message payload that will be exchanged between the client a
 ### Complete WebSocketChatServer
 Implement all TODOs inside WebSocketChatServer and follow each method description.
 
-###Run the application with command
+### Run the application with command
 mvn build; mvn spring-boot:ru
