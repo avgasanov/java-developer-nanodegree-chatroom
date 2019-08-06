@@ -151,6 +151,9 @@
      */
     function login() {
         // TODO: complete the login function
+        if(!$('#username').val()) {
+            alert('Enter username')
+        }
         return fetch(`\index?username=${$('#username').val()}`)
             .then(
                 response => {

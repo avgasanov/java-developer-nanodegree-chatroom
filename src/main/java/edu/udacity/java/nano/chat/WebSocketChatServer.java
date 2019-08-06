@@ -1,16 +1,13 @@
 package edu.udacity.java.nano.chat;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpSession;
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Stream;
 
 /**
  * WebSocket Server
@@ -20,7 +17,9 @@ import java.util.stream.Stream;
  */
 
 @Component
-@ServerEndpoint(value = "/chat", configurator = WebSocketHttpConfig.class)
+@ServerEndpoint(value = "/chat",
+        configurator = WebSocketHttpConfig.class,
+        encoders = {MessageEncoder.class})
 public class WebSocketChatServer {
 
     /**
@@ -30,15 +29,17 @@ public class WebSocketChatServer {
 
     private static void sendMessageToAll(String msg) {
         //TODO: add send message method.
+        Message message = JSONObject.parseObject(msg, Message.class);
+        if(message != null && message.getMsg() != null) {
+            message.setType("SPEAK");
+        }
+        message.setOnlineCount(onlineSessions.size());
         onlineSessions.values().forEach((session -> {
             try {
-                JSONObject jsonObject = (JSONObject) JSON.parse(msg);
-                if(jsonObject.containsKey("msg")) {
-                    jsonObject.put("type", "SPEAK");
-                }
-                jsonObject.put("onlineCount", onlineSessions.size());
-                session.getBasicRemote().sendText(jsonObject.toJSONString());
+                session.getBasicRemote().sendObject(message);
             } catch (IOException e) {
+                e.printStackTrace();
+            } catch (EncodeException e) {
                 e.printStackTrace();
             }
         }));
@@ -60,8 +61,8 @@ public class WebSocketChatServer {
     @OnMessage
     public void onMessage(Session session, String jsonStr) {
         //TODO: add send message.
-        JSONObject jsonObject = (JSONObject) JSONObject.parse(jsonStr);
-        String userName = (String) jsonObject.get("username"); // session is parameter, username for demonstrational purposes only
+        Message message = JSONObject.parseObject(jsonStr, Message.class);
+        String userName = message.getUsername(); // session is parameter, username for demonstrational purposes only
         sendMessageToAll(jsonStr);
     }
 

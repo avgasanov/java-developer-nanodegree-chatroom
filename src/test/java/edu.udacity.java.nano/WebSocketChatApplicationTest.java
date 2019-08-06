@@ -11,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.*;
@@ -73,11 +74,11 @@ public class WebSocketChatApplicationTest {
         WebElement textContainer = webDriver.findElement(By.id("message-container"));
         int textContainerSize = textContainer.findElements(By.className("mdui-card")).size();
         WebElement sendMessage =webDriver.findElement(By.id("msg"));
-        assertEquals(textContainerSize, 0);
         sendMessage.sendKeys("some message");
         webDriver.findElement(By.id("send-message-button")).click();
-        textContainerSize = textContainer.findElements(By.className("mdui-card")).size();
-        assertTrue(textContainerSize > 0);
+        List<WebElement> messages = textContainer.findElements(By.id("message-card"));
+        WebElement lastMessage = messages.get(messages.size() - 1);
+        assertEquals("some-name：some message", lastMessage.getText());
         webDriver.close();
     }
 

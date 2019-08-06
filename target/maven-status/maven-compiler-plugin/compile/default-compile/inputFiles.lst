@@ -1,5 +1,6 @@
-D:\Courses\JavaNanodegree\Projects_For_Submission\java-developer-nanodegree-chatroom\src\main\java\edu\udacity\java\nano\chat\WebSocketChatServer.java
-D:\Courses\JavaNanodegree\Projects_For_Submission\java-developer-nanodegree-chatroom\src\main\java\edu\udacity\java\nano\chat\WebSocketConfig.java
-D:\Courses\JavaNanodegree\Projects_For_Submission\java-developer-nanodegree-chatroom\src\main\java\edu\udacity\java\nano\chat\WebSocketHttpConfig.java
-D:\Courses\JavaNanodegree\Projects_For_Submission\java-developer-nanodegree-chatroom\src\main\java\edu\udacity\java\nano\chat\Message.java
-D:\Courses\JavaNanodegree\Projects_For_Submission\java-developer-nanodegree-chatroom\src\main\java\edu\udacity\java\nano\WebSocketChatApplication.java
+C:\Users\avgas\Documents\Courses\java-developer-nanodegree-chatroom\src\main\java\edu\udacity\java\nano\chat\WebSocketChatServer.java
+C:\Users\avgas\Documents\Courses\java-developer-nanodegree-chatroom\src\main\java\edu\udacity\java\nano\chat\WebSocketHttpConfig.java
+C:\Users\avgas\Documents\Courses\java-developer-nanodegree-chatroom\src\main\java\edu\udacity\java\nano\WebSocketChatApplication.java
+C:\Users\avgas\Documents\Courses\java-developer-nanodegree-chatroom\src\main\java\edu\udacity\java\nano\chat\Message.java
+C:\Users\avgas\Documents\Courses\java-developer-nanodegree-chatroom\src\main\java\edu\udacity\java\nano\chat\MessageEncoder.java
+C:\Users\avgas\Documents\Courses\java-developer-nanodegree-chatroom\src\main\java\edu\udacity\java\nano\chat\WebSocketConfig.java
